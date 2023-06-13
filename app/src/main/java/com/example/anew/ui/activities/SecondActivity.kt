@@ -70,6 +70,9 @@ class SecondActivity : AppCompatActivity(){
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
     fun initClass(){
 
         binding.buttonGracias.setOnClickListener{

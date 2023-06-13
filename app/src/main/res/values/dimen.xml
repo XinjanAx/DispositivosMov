@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="contenido">150dp</dimen>
+    <dimen name="boton_w">150dp</dimen>
+    <dimen name="boton_h">75dp</dimen>
+
+</resources>

@@ -7,7 +7,7 @@
     tools:context=".ui.activities.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtName"
         style="@style/tituloStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/titulo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imgMarvel" />
 
     <TextView
         android:id="@+id/textView2"
@@ -37,7 +37,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/saludo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
         android:id="@+id/inputEmail"
@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgMarvel"
         android:layout_width="185dp"
         android:layout_height="184dp"
         android:layout_marginStart="112dp"

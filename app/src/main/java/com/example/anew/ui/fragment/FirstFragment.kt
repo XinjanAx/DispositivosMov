@@ -11,6 +11,8 @@ import com.example.anew.databinding.FragmentFristBinding
 
 class FirstFragment : Fragment() {
 
+    private lateinit var binding : FragmentFristBinding
+
     override fun onStart() {
         super.onStart()
 
@@ -22,8 +24,6 @@ class FirstFragment : Fragment() {
         binding.list.adapter = adapter
     }
 
-
-    private lateinit var binding : FragmentFristBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

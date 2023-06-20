@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.anew.R
 import com.example.anew.data.marvel.MarvelChars
 import com.example.anew.databinding.MarvelCharactersBinding
+import com.squareup.picasso.Picasso
 
 class MarvelAdapter (private val items : List<MarvelChars>): RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>(){
 
@@ -18,7 +19,7 @@ class MarvelAdapter (private val items : List<MarvelChars>): RecyclerView.Adapte
         fun render(item : MarvelChars){
             binding.txtName.text=item.name
             binding.txtComic.text=item.comic
-
+            Picasso.get().load(item.img).into(binding.imgMarvel)
         }
     }
 

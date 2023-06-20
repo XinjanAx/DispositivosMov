@@ -47,10 +47,9 @@ class SecondActivity : AppCompatActivity(){
                     transaction.commit()
                     Snackbar.make(binding.txtGracias,"entramos al inicio",Snackbar.LENGTH_LONG).show()
                     // mostar en "${name}" el valor procesado*/
-                    FragmentsManager().replaceFragment(supportFragmentManager,binding.frmContainer.id,
-                        FirstFragment())
-
-
+                    FragmentsManager().replaceFragment(supportFragmentManager,
+                        binding.frmContainer.id, FirstFragment()
+                    )
                     true
                 }
                 R.id.nav_fav -> {
@@ -70,9 +69,6 @@ class SecondActivity : AppCompatActivity(){
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
     fun initClass(){
 
         binding.buttonGracias.setOnClickListener{
@@ -81,9 +77,6 @@ class SecondActivity : AppCompatActivity(){
                 this,
                 MainActivity::class.java)
             startActivity(intent)
-            Snackbar.make(
-                binding.txtGracias,"regresando",
-                Snackbar.LENGTH_LONG).show()
         }
     }
 

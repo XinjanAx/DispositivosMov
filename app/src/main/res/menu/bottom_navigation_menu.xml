@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_inicio"
+        android:id="@+id/inicio"
         android:icon="@drawable/baseline_menu_24"
         android:title="Inicio" />
     <item
-        android:id="@+id/nav_fav"
+        android:id="@+id/favoritos"
         android:icon="@drawable/baseline_favorite_border_24"
         android:title="Favoritos" />
     <item
-        android:id="@+id/nav_us"
+        android:id="@+id/apis"
         android:icon="@drawable/baseline_other_houses_24"
         android:title="Nosotros" />
 </menu>

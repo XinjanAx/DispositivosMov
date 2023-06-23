@@ -1,5 +1,6 @@
 package com.example.anew.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.anew.R
-import com.example.anew.databinding.FragmentFristBinding
+import com.example.anew.*
+import com.example.anew.data.marvel.MarvelChars
+import com.example.anew.databinding.FragmentNewBinding
 import com.example.anew.logic.list.ListItem
+import com.example.anew.ui.activities.DetailsMarvelItem
 import com.example.anew.ui.adapter.MarvelAdapter
 
-class FirstFragment : Fragment() {
+class NewFragment : Fragment() {
 
-    private lateinit var binding : FragmentFristBinding
+    private lateinit var binding : FragmentNewBinding
 
     override fun onStart(){
         super.onStart()
@@ -29,6 +32,7 @@ class FirstFragment : Fragment() {
         //binding.listwiew1.adapter = adapter
 
         val rvAdapter = MarvelAdapter(ListItem().returnMarvelChars())
+        { sendMarvelItem(it) }
         val rvMarvel = binding.rvMarvelChars
 
         rvMarvel.adapter=rvAdapter
@@ -41,12 +45,20 @@ class FirstFragment : Fragment() {
     }
 
 
+    fun sendMarvelItem(item: MarvelChars){
+        val i = Intent(requireActivity(),DetailsMarvelItem::class.java)
+        i.putExtra("name",item)
+        startActivity(i)
+    }
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFristBinding.inflate(
+        binding = FragmentNewBinding.inflate(
             layoutInflater,
             container,
             false

@@ -1,13 +1,19 @@
 <resources>
-    <string name="app_name">DispositivosMoviles</string>
-    <string name="titulo">Pedidos Online</string>
-    <string name="saludo">¡Hola! Es bueno verte nuevamente</string>
-    <string name="email">Correo</string>
-    <string name="pass">Contraseña</string>
-    <string name="botonIngresar">Ingresar</string>
-    <string name="txtDesvio">Ó conéctate usando las redes sociales</string>
-    <string name="remember">¿Olvido su contraseña?</string>
-    <string name="SingUp">Registrate</string>
+    <string name="app_name">Disp Moviles</string>
+    <string name="Titulo">Pedidos Online</string>
+    <string name="Saludo">¡Hola! Es bueno verte nuevamente</string>
+    <string name="Correo">Correo</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Ingresar">Ingresar</string>
+    <string name="Mensaje">O conéctese usando las redes sociales</string>
+    <string name="Olvido">¿Olvidó su contraseña?</string>
+    <string name="Registrese">Regístrese</string>
+    <string name="Twitter">Twitter</string>
+    <string name="Facebook">Facebook</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_chat_gpt">Chat GPT</string>
+    <string name="button">Button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

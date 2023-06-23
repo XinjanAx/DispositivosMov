@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.anew.databinding.FragmentFristBinding
 import com.example.anew.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {

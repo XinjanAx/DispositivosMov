@@ -7,5 +7,12 @@
     <color name="twitter">#00A2F5</color>
     <color name="facebook">#23599B</color>
     <color name="lowGreen">#373C53</color>
+    <color name="red">#FF5F6B</color>
+    <color name="light_red">#FF0000</color>
+    <color name="dark_red">#960000</color>
+    <color name="light_grey">#979FC5</color>
+    <color name="light_blue">#00A2F5</color>
+    <color name="blue">#23599B</color>
+    <color name="red_marvel">#B70A0B</color>
 
 </resources>

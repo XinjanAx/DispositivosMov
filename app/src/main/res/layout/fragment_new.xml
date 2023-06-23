@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.ThirdFragment">
+    tools:context=".ui.fragment.NewFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/cardView"
         android:layout_width="330dp"
         android:layout_height="95dp"
         android:layout_marginTop="40dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageMiles3"
+            android:id="@+id/imageMiles"
             android:layout_width="87dp"
             android:layout_height="match_parent"
             android:src="@drawable/logo2"
@@ -26,34 +26,46 @@
             tools:layout_editor_absoluteY="166dp" />
 
         <TextView
-            android:id="@+id/textViewFrag3"
+            android:id="@+id/textViewFrag"
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:background="@color/dark_red"
             android:gravity="center"
-            android:text="Mi tercer fragment"
+            android:text="Mi primer fragment"
             android:textColor="@color/black"
             android:textSize="25sp" />
 
     </androidx.cardview.widget.CardView>
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <ListView
-        android:id="@+id/listView3"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="126dp">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rvSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMarvelChars"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

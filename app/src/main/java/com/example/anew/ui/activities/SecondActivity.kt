@@ -1,20 +1,17 @@
 package com.example.anew.ui.activities
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.anew.R
 import com.example.anew.databinding.ActivityMainBinding
 import com.example.anew.databinding.ActivitySecondBinding
-import com.example.anew.ui.fragment.FirstFragment
+import com.example.anew.ui.fragment.NewFragment
 import com.example.anew.ui.fragment.SecondFragment
-import com.example.anew.ui.fragment.ThridFragment
+import com.example.anew.ui.fragment.ThirdFragment
 import com.example.anew.ui.utilities.FragmentsManager
-import com.google.android.material.snackbar.Snackbar
 
-class SecondActivity : AppCompatActivity(){
+class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
 
@@ -27,58 +24,58 @@ class SecondActivity : AppCompatActivity(){
     override fun onStart() {
         super.onStart()
 
-        /*binding.button.setOnClickListener{
-            binding.textView.text="SAPA"
-           //A donde me lleva el intent
-            startActivity(intent)
-        }*/
-        //FragmentsManager().replaceFragment(supportFragmentManager,binding.frmContainer.id,FirstFragment())
+        var name: String = ""
+        binding.txtView.text = "Bienvenido $name"
+        Log.d("UCE", "Entrando a Start")
+
+        super.onStart()
+        FragmentsManager().replaceFragment(supportFragmentManager,
+            binding.frmContainer.id, NewFragment())
+
+
 
         initClass()
-        binding.bottomNavigation.setOnItemSelectedListener{ item ->
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    fun initClass(){
+        /*Log.d("uce", "Entrando a start")  debug en la terminal*/
+        binding.btnRetorno.setOnClickListener{
+            Log.d("UCE", "Entrando al click de retorno")
+            var intent= Intent(this, ActivityMainBinding::class.java)
+            startActivity(intent)
+
+            /*Snackbar.make(
+                binding.loginSegundo,"regresando",
+                Snackbar.LENGTH_LONG).show()*/
+        }
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.nav_inicio -> {
-                    /*//algun proceso
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(binding.frmContainer.id,FirstFragment())
-                    //transaction.add(binding.frmContainer.id,FirstFragment()) se añade y no se reemplaza
-                    transaction.addToBackStack(null) //todo se vuelve un flujo es para usar  el back del cell
-                                                        //cada click se añade a la pila de navegacion del la app
-                    transaction.commit()
-                    Snackbar.make(binding.txtGracias,"entramos al inicio",Snackbar.LENGTH_LONG).show()
-                    // mostar en "${name}" el valor procesado*/
+                R.id.inicio -> {
                     FragmentsManager().replaceFragment(supportFragmentManager,
-                        binding.frmContainer.id, FirstFragment()
-                    )
+                        binding.frmContainer.id, NewFragment())
                     true
                 }
-                R.id.nav_fav -> {
-                    // Respond to navigation item 2 click
-                    FragmentsManager().replaceFragment(supportFragmentManager,binding.frmContainer.id,
-                        SecondFragment())
+                R.id.favoritos -> {
+                    FragmentsManager().replaceFragment(supportFragmentManager,
+                        binding.frmContainer.id, SecondFragment())
                     true
                 }
-                R.id.nav_us -> {
-                    // Respond to navigation item 2 click
-                    FragmentsManager().replaceFragment(supportFragmentManager,binding.frmContainer.id,
-                        ThridFragment())
+                R.id.apis -> {
+                    FragmentsManager().replaceFragment(supportFragmentManager,
+                        binding.frmContainer.id, ThirdFragment())
                     true
                 }
                 else -> false
             }
         }
     }
-
-    fun initClass(){
-
-        binding.buttonGracias.setOnClickListener{
-
-            var intent= Intent(
-                this,
-                MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-
 }

@@ -4,30 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import com.example.anew.R
 import com.example.anew.databinding.FragmentThridBinding
 
 
-class ThridFragment : Fragment() {
+class ThirdFragment : Fragment() {
 
-    private lateinit var binding : FragmentThridBinding
+    private lateinit var binding: FragmentThridBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentThridBinding.inflate(
-            layoutInflater,
-            container,
-            false
-        )
+        binding = FragmentThridBinding.inflate(layoutInflater, container, false)
         return binding.root
-        //return  inflater.inflate(
-        //    R.layout.fragment_frist, //cual es el layout q se va a inflar (pintar)
-        //    container, // y cual es el huesped del parasito (contenedor)=
-        //    false)
     }
 
+    override fun onStart(){
+        super.onStart()
+
+        val names = arrayListOf<String>(
+            "Carlos",
+            "Xavier",
+            "Andrés",
+            "Pepe",
+            "Mariano",
+            "Rosa")
+
+        val adapter = ArrayAdapter<String>(
+            requireActivity(),
+            R.layout.simple_layout,
+            names
+        )
+
+        binding.spinner3.adapter = adapter
+        binding.listView3.adapter = adapter
+    }
 
 }

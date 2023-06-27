@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         var name: String = ""
-        binding.txtView.text = "Bienvenido $name"
         Log.d("UCE", "Entrando a Start")
 
         super.onStart()

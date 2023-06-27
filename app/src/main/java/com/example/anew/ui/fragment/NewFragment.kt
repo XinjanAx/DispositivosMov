@@ -7,13 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anew.*
 import com.example.anew.data.marvel.MarvelChars
 import com.example.anew.databinding.FragmentNewBinding
+import com.example.anew.logic.jikanlogic.JikanAnimeLogic
 import com.example.anew.logic.list.ListItem
 import com.example.anew.ui.activities.DetailsMarvelItem
 import com.example.anew.ui.adapter.MarvelAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NewFragment : Fragment() {
 
@@ -31,16 +36,12 @@ class NewFragment : Fragment() {
         binding.spinner .adapter = adapter
         //binding.listwiew1.adapter = adapter
 
-        val rvAdapter = MarvelAdapter(ListItem().returnMarvelChars())
-        { sendMarvelItem(it) }
-        val rvMarvel = binding.rvMarvelChars
+        chargeDaraRv()
 
-        rvMarvel.adapter=rvAdapter
-        rvMarvel.layoutManager = LinearLayoutManager(
-            requireActivity(),
-            LinearLayoutManager.VERTICAL,
-            false
-        )
+        binding.rvSwipe.setOnRefreshListener {
+            chargeDaraRv()
+            binding.rvSwipe.isRefreshing=false
+        }
 
     }
 
@@ -69,5 +70,28 @@ class NewFragment : Fragment() {
         //    container, // y cual es el huesped del parasito (contenedor)=
         //    false)
     }
+
+    fun chargeDaraRv() {
+
+        lifecycleScope.launch(){
+            val rvAdapter = MarvelAdapter(
+                JikanAnimeLogic().getAllAnimes()
+            ) {
+                sendMarvelItem(it)
+            }
+
+            withContext(Dispatchers.Main){
+                with(binding.rvMarvelChars){
+
+                    this.adapter = rvAdapter
+                    this.layoutManager = LinearLayoutManager(
+                        requireActivity(),
+                        LinearLayoutManager.VERTICAL,
+                        false)
+                }
+            }
+        }
+    }
+
 
 }

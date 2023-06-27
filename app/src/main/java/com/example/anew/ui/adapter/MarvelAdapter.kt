@@ -22,7 +22,7 @@ class MarvelAdapter(private val items: List<MarvelChars>,
         fun render(item: MarvelChars,
                    fnClick: (MarvelChars) -> Unit){
             binding.imgMarvel.bringToFront()
-            binding.txtName.text = item.name
+            binding.textView.text = item.name
             binding.txtComic.text = item.comic
             Picasso.get().load(item.img).into(binding.imgMarvel)
 

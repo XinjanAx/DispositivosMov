@@ -49,7 +49,7 @@ class SecondActivity : AppCompatActivity() {
         /*Log.d("uce", "Entrando a start")  debug en la terminal*/
         binding.btnRetorno.setOnClickListener{
             Log.d("UCE", "Entrando al click de retorno")
-            var intent= Intent(this, ActivityMainBinding::class.java)
+            var intent= Intent(this, MainActivity::class.java)
             startActivity(intent)
 
             /*Snackbar.make(

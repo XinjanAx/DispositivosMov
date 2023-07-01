@@ -9,10 +9,12 @@ import com.example.anew.data.marvel.MarvelChars
 import com.example.anew.databinding.MarvelCharactersBinding
 import com.squareup.picasso.Picasso
 
-class MarvelAdapter(private val items: List<MarvelChars>,
+class MarvelAdapter(
     //Unit es igual al void en java, no devuelve nada
                     private val fnClick: (MarvelChars) -> Unit):
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
+
+    var items: List<MarvelChars> = listOf()
 
     class MarvelViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -28,7 +30,6 @@ class MarvelAdapter(private val items: List<MarvelChars>,
 
             itemView.setOnClickListener{
                 fnClick(item)
-                //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -52,4 +53,9 @@ class MarvelAdapter(private val items: List<MarvelChars>,
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateListItems(newItems:List<MarvelChars>){
+        items = items.plus(newItems)
+        notifyDataSetChanged()
+    }
 }

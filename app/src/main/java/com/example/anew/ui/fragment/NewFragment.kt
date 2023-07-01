@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.anew.*
 import com.example.anew.data.marvel.MarvelChars
 import com.example.anew.databinding.FragmentNewBinding
 import com.example.anew.logic.jikanlogic.JikanAnimeLogic
 import com.example.anew.logic.list.ListItem
+import com.example.anew.logic.marvelLogic.MarvelLogic
 import com.example.anew.ui.activities.DetailsMarvelItem
 import com.example.anew.ui.adapter.MarvelAdapter
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +25,11 @@ import kotlinx.coroutines.withContext
 class NewFragment : Fragment() {
 
     private lateinit var binding : FragmentNewBinding
+    private lateinit var lmanager : LinearLayoutManager
+    private var rvAdapter : MarvelAdapter = MarvelAdapter {
+        sendMarvelItem(it)
+    }
+
 
     override fun onStart(){
         super.onStart()
@@ -34,14 +41,45 @@ class NewFragment : Fragment() {
             names)
 
         binding.spinner .adapter = adapter
-        //binding.listwiew1.adapter = adapter
-
-        chargeDaraRv()
+        chargeDaraRv("cap")
 
         binding.rvSwipe.setOnRefreshListener {
-            chargeDaraRv()
+            chargeDaraRv("cap")
             binding.rvSwipe.isRefreshing=false
         }
+        binding.rvMarvelChars.addOnScrollListener(
+            object :RecyclerView.OnScrollListener(){
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    if (dy > 0){
+
+                        //cuantos elems han pasado
+                        val v = lmanager.childCount
+                        //mi posicion actual
+                        val p = lmanager.findFirstVisibleItemPosition()
+                        //cuantos elems tengo en total
+                        val t = lmanager.itemCount
+
+                        if ((v+p)>=t){
+                            lifecycleScope.launch((Dispatchers.IO)){
+                                val newItem = JikanAnimeLogic().getAllAnimes()
+                                /*val newItem = MarvelLogic().getAllMarvel(
+                                    name = "spider",
+                                    limit = 20
+                                )*/
+                                withContext(Dispatchers.Main){
+                                    rvAdapter.updateListItems(newItem)
+                                }
+                            }
+                        }
+
+                    }
+
+
+                }
+            }
+        )
 
     }
 
@@ -58,40 +96,34 @@ class NewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentNewBinding.inflate(
             layoutInflater,
             container,
             false
         )
+        lmanager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.VERTICAL,
+            false
+        )
         return binding.root
-        //return  inflater.inflate(
-        //    R.layout.fragment_frist, //cual es el layout q se va a inflar (pintar)
-        //    container, // y cual es el huesped del parasito (contenedor)=
-        //    false)
     }
 
-    fun chargeDaraRv() {
-
-        lifecycleScope.launch(){
-            val rvAdapter = MarvelAdapter(
-                JikanAnimeLogic().getAllAnimes()
-            ) {
-                sendMarvelItem(it)
-            }
+    fun chargeDaraRv(search:String) {
+        lifecycleScope.launch(Dispatchers.IO){
+            rvAdapter.items = JikanAnimeLogic().getAllAnimes()
+            //ListItems().returnMarvelChars()
+            //JikanAnimeLogic().getAllAnimes()
+            //MarvelLogic().getMarvelChars(name = search, limit = 20)
 
             withContext(Dispatchers.Main){
                 with(binding.rvMarvelChars){
 
                     this.adapter = rvAdapter
-                    this.layoutManager = LinearLayoutManager(
-                        requireActivity(),
-                        LinearLayoutManager.VERTICAL,
-                        false)
+                    this.layoutManager = lmanager
                 }
             }
         }
     }
-
-
 }

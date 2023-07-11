@@ -1,12 +1,12 @@
-package com.example.anew.data.marvel
+package com.example.anew.logic.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class MarvelChars (
-    var id:Int,
-    var name: String,
+    val id: Int,
+    val name: String,
     val comic: String,
     val img: String
 ) : Parcelable

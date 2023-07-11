@@ -1,7 +1,7 @@
 package com.example.anew.logic.list
 
 import com.example.anew.data.entities.LoginUser
-import com.example.anew.data.marvel.MarvelChars
+import com.example.anew.logic.data.MarvelChars
 
 class ListItem {
 

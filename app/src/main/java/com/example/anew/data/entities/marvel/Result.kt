@@ -1,5 +1,7 @@
 package com.example.anew.data.entities.marvel
 
+import com.example.anew.logic.data.MarvelChars
+
 data class Result(
     val comics: Comics,
     val description: String,
@@ -13,3 +15,17 @@ data class Result(
     val thumbnail: Thumbnail,
     val urls: List<Url>
 )
+
+fun Result.getMarvelChars(): MarvelChars{
+    var comic: String = ""
+    if(comics.items.isNotEmpty()){
+        comic=comics.items[0].name
+    }
+    var a= MarvelChars(
+        id,
+        name,
+        comic,
+        thumbnail.path+"."+thumbnail.extension
+    )
+    return a
+}

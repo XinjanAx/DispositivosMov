@@ -2,10 +2,8 @@ package com.example.anew.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.anew.R
-import com.example.anew.data.marvel.MarvelChars
+import com.example.anew.logic.data.MarvelChars
 import com.example.anew.databinding.ActivityDetailsMarvelItemBinding
-import com.example.anew.databinding.MarvelCharactersBinding
 import com.squareup.picasso.Picasso
 
 class DetailsMarvelItem : AppCompatActivity() {
@@ -37,6 +35,7 @@ class DetailsMarvelItem : AppCompatActivity() {
             binding.txtName.text = item.name
             Picasso.get().load(item.img).into(binding.imgMarvel)
             binding.txtComic.text = item.comic
+
         }
     }
 }

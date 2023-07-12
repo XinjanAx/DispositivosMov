@@ -15,5 +15,5 @@ interface MarvelCharsDAO {
     fun getOneCharacter(pk: Int) : MarvelCharsDB
 
     @Insert
-    fun insetMarvelChar(ch : List<MarvelCharsDB>)
+    fun insertMarvelChar(ch : List<MarvelCharsDB>)
 }

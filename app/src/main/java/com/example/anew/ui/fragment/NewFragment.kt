@@ -27,7 +27,8 @@ class   NewFragment : Fragment() {
 
     private lateinit var binding : FragmentNewBinding
     private lateinit var lmanager : LinearLayoutManager
-    private lateinit var gmanager : GridLayoutManager
+    private lateinit var gManager : GridLayoutManager
+
     private var page = 1
     private var marvelCharsItems : MutableList<MarvelChars> = mutableListOf<MarvelChars>()
 
@@ -127,17 +128,41 @@ class   NewFragment : Fragment() {
                     "spider", page*2
                 ))
             }
-
-
             rvAdapter.items = marvelCharsItems
 
             binding.rvMarvelChars.apply {
                 this.adapter = rvAdapter;
                 this.layoutManager = lmanager;
-
-
-                lmanager.scrollToPositionWithOffset(pos ,10)
             }
+        }
+    }
+
+    fun chargeDataRVDB(pos: Int) {
+
+        lifecycleScope.launch(Dispatchers.Main){
+
+            marvelCharsItems = withContext(Dispatchers.IO) {
+
+                var marvelCharsItems = MarvelLogic()
+                    .getAllMarvelCharsDB()
+                    .toMutableList()
+
+                if(marvelCharsItems.isEmpty()) {
+                    marvelCharsItems = (MarvelLogic().getAllMarvelChars(
+                        0, page * 3))
+                    MarvelLogic().insertMarvelCharsToDB(marvelCharsItems)
+                }
+
+                return@withContext marvelCharsItems
+            }
+        }
+
+        rvAdapter.items = marvelCharsItems
+
+        binding.rvMarvelChars.apply{
+            this.adapter = rvAdapter
+            this.layoutManager = lmanager
+            gManager.scrollToPositionWithOffset(pos, 10)
         }
         page++
     }

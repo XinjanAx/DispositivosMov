@@ -1,7 +1,7 @@
 package com.example.anew.logic.jikanlogic
 
 import com.example.anew.data.connections.*
-import com.example.anew.endpoints.JikanEndpoint
+import com.example.anew.data.endpoints.JikanEndpoint
 import com.example.anew.logic.data.MarvelChars
 
 class JikanAnimeLogic {

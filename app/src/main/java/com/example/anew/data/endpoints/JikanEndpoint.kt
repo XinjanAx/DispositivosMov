@@ -1,4 +1,4 @@
-package com.example.anew.endpoints
+package com.example.anew.data.endpoints
 
 import com.example.anew.data.connections.ApiConnection
 import com.example.anew.data.entities.jukan.JikanAnimeEntity

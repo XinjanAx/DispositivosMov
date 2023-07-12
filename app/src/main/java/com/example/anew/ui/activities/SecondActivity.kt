@@ -46,7 +46,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     fun initClass(){
-        /*Log.d("uce", "Entrando a start")  debug en la terminal*/
+        /*Log.d("uce", "Entrando a start")  debug en la terminal
         binding.btnRetorno.setOnClickListener{
             Log.d("UCE", "Entrando al click de retorno")
             var intent= Intent(this, MainActivity::class.java)
@@ -55,7 +55,7 @@ class SecondActivity : AppCompatActivity() {
             /*Snackbar.make(
                 binding.loginSegundo,"regresando",
                 Snackbar.LENGTH_LONG).show()*/
-        }
+        }*/
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {

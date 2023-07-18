@@ -32,12 +32,6 @@ class JikanAnimeLogic {
         }
         return itemList
 
-
-
-
-
-
-
     }
 
 

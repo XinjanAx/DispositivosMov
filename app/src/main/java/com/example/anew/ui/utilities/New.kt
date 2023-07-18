@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.example.anew.data.connections.MarvelConnectionDB
 
 class New : Application(){
-    val name_class : String = "Admin"
 
     override fun onCreate(){
         super.onCreate()

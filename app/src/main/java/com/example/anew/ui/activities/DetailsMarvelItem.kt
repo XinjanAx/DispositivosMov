@@ -32,8 +32,8 @@ class DetailsMarvelItem : AppCompatActivity() {
         val item = intent.getParcelableExtra<MarvelChars>("name")
 
         if(item != null) {
-            binding.txtName.text = item.name
-            Picasso.get().load(item.img).into(binding.imgMarvel)
+            binding.txtName.text = item.nombre
+            Picasso.get().load(item.imagen).into(binding.imgMarvel)
             binding.txtComic.text = item.comic
 
         }

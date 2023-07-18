@@ -33,32 +33,64 @@ class MarvelLogic {
         return itemList
     }
 
-    suspend fun getAllMarvelChars(offset: Int, limit: Int): ArrayList<MarvelChars> {
+    suspend fun getAllMarvelChars(offset: Int, limit: Int): MutableList<MarvelChars> {
 
-        val itemList = arrayListOf<MarvelChars>()
+        var itemList = arrayListOf<MarvelChars>()
 
-        val response = ApiConnection.getService(
+        val call = ApiConnection.getService(
             ApiConnection.typeApi.Marvel,
             MarvelEndpoints::class.java
-        ).getAllMarvelChars(offset, limit)
+        )
 
-        if(response != null){
-            response.body()!!.data.results.forEach {
-                val m = it.getMarvelChars()
-                itemList.add(m)
+        if (call != null) {
+            val response = call.getAllMarvelChars(offset, limit)
+
+            if (response.isSuccessful) {
+                response.body()!!.data.results.forEach() {
+                    itemList.add(it.getMarvelChars())
+                }
+            } else {
+                Log.d("UCE", response.toString())
             }
         }
         return itemList
     }
 
     suspend fun getAllMarvelCharsDB(): List<MarvelChars> {
-        var itemList : ArrayList<MarvelChars> = arrayListOf()
-        val items_aux =
-            New.getDBInstance().marvelDao().getAllCharacters()
-        items_aux.forEach {
-            itemList.add(it.getMarvelChars())
+        val items: ArrayList<MarvelChars> = arrayListOf()
+        New.getDBInstance().marvelDao().getAllCharacters()
+        .forEach {
+            items.add(
+                MarvelChars(
+                    it.id,
+                    it.nombre,
+                    it.comic,
+                    it.imagen
+                )
+            )
         }
-        return itemList
+        return items
+    }
+
+    suspend fun getInitChar(offset:Int, limit:Int): MutableList<MarvelChars> {
+        var items = mutableListOf<MarvelChars>()
+        try {
+            items = MarvelLogic()
+                .getAllMarvelCharsDB()
+                .toMutableList()
+
+            if (items.isEmpty()) {
+                items = (MarvelLogic().getAllMarvelChars(
+                    offset,
+                    limit
+                ))
+                //MarvelLogic().insertMarvelCharsToDB(items)
+            }
+        } catch (ex: Exception) {
+            throw RuntimeException(ex.message)
+        } finally {
+            return items
+        }
     }
 
     suspend fun insertMarvelCharsToDB(items : List<MarvelChars>) {

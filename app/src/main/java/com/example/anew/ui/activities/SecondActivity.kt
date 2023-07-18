@@ -1,12 +1,10 @@
 package com.example.anew.ui.activities
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.anew.R
-import com.example.anew.databinding.ActivityMainBinding
 import com.example.anew.databinding.ActivitySecondBinding
-import com.example.anew.ui.fragment.NewFragment
+import com.example.anew.ui.fragment.FirstFragment
 import com.example.anew.ui.fragment.SecondFragment
 import com.example.anew.ui.fragment.ThirdFragment
 import com.example.anew.ui.utilities.FragmentsManager
@@ -30,7 +28,7 @@ class SecondActivity : AppCompatActivity() {
 
         super.onStart()
         FragmentsManager().replaceFragment(supportFragmentManager,
-            binding.frmContainer.id, NewFragment())
+            binding.frmContainer.id, FirstFragment())
 
 
 
@@ -61,7 +59,7 @@ class SecondActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.inicio -> {
                     FragmentsManager().replaceFragment(supportFragmentManager,
-                        binding.frmContainer.id, NewFragment())
+                        binding.frmContainer.id, FirstFragment())
                     true
                 }
                 R.id.favoritos -> {

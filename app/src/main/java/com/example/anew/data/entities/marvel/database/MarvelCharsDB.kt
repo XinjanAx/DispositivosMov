@@ -11,16 +11,16 @@ import kotlinx.parcelize.Parcelize
 class MarvelCharsDB (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String,
+    val nombre: String,
     val comic: String,
-    val img: String
+    val imagen: String
     ): Parcelable
 
 fun MarvelCharsDB.getMarvelChars() : MarvelChars {
     return MarvelChars(
         id,
-        name,
+        nombre,
         comic,
-        img
+        imagen
     )
 }

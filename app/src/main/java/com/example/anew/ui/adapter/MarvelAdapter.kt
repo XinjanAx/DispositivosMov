@@ -10,29 +10,45 @@ import com.example.anew.databinding.MarvelCharactersBinding
 import com.squareup.picasso.Picasso
 
 class MarvelAdapter(
-    //Unit es igual al void en java, no devuelve nada
-    private var fnClick: (MarvelChars) -> Unit):
+    var items: List<MarvelChars>,
+    // En Java es Void, en Kotlin es Unit
+    private var fnClick: (MarvelChars) -> Unit,
+    private var fnSave : (MarvelChars) -> Boolean
+) :
 
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
-    var items: List<MarvelChars> = listOf()
-    class MarvelViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val binding: MarvelCharactersBinding =
-            MarvelCharactersBinding.bind(view)
+    class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        private val binding: MarvelCharactersBinding = MarvelCharactersBinding.bind(view)
 
         fun render(
             item: MarvelChars,
-            fnClick: (MarvelChars) -> Unit){
-            binding.imgMarvel.bringToFront()
-            binding.textView.text = item.name
-            binding.txtComic.text = item.comic
-            Picasso.get().load(item.img).into(binding.imgMarvel)
+            fnClick: (MarvelChars) -> Unit,
+            fnSave : (MarvelChars) -> Boolean
+        ) {
+            // En esta funcion se realizan los cambios
+            println("Recibiendo a ${item.nombre}")
+            //binding.imageView2.bringToFront()
+            binding.marvelTitle.text = item.nombre
+            binding.marvelDesc.text = item.comic
+            Picasso.get().load(item.imagen).into(binding.imageView2)
 
-            itemView.setOnClickListener{
+            // itemView: el elemento en cualquier parte del elemento
+            itemView.setOnClickListener {
+                /*Snackbar.make(
+                    binding.imageView2,
+                    item.nombre,
+                    Snackbar.LENGTH_SHORT
+                ).setBackgroundTint(Color.rgb(247, 147, 76)).show()
+                 */
                 fnClick(item)
             }
-        }
 
+            binding.btnSave.setOnClickListener {
+                fnSave(item)
+            }
+        }
     }
 
     override fun onCreateViewHolder(
@@ -40,27 +56,28 @@ class MarvelAdapter(
         viewType: Int
     ): MarvelAdapter.MarvelViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         return MarvelViewHolder(
             inflater.inflate(
-                R.layout.marvel_characters, parent, false
+                R.layout.marvel_characters,
+                parent, false
             )
         )
     }
 
     override fun onBindViewHolder(holder: MarvelAdapter.MarvelViewHolder, position: Int) {
-        holder.render(items[position], fnClick)
+        holder.render(items[position], fnClick, fnSave)
     }
 
     override fun getItemCount(): Int = items.size
 
-    fun updateListAdapter(newItems:List<MarvelChars>){
-        items = items.plus(newItems)
+    fun updateListItem(newItems: List<MarvelChars>){
+        this.items = this.items.plus(newItems)
         notifyDataSetChanged()
     }
+
     fun replaceListAdapter(newItems: List<MarvelChars>){
-        //plus agrega a la lista los nuevos elems
         this.items = newItems
         notifyDataSetChanged()
     }
+
 }

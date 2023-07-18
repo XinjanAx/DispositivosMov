@@ -23,15 +23,15 @@ object ApiConnection {
     }
 
     suspend fun <T,E :Enum<E>> getService(api: typeApi, service:Class<T>):T{
-        var BACE =""
+        var base =""
         when(api.name){
             typeApi.Jikan.name -> {
-                BACE = API_JIKAN
+                base = API_JIKAN
             }
             typeApi.Marvel.name -> {
-                BACE= API_MARVEL
+                base= API_MARVEL
             }
         }
-        return getConnection(BACE).create(service)
+        return getConnection(base).create(service)
     }
 }

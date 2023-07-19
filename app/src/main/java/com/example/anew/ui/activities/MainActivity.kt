@@ -12,8 +12,6 @@ import com.example.anew.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     // At the top level of your kotlin file:
-    private val Context.dataStore: DataStore<Preferences>
-        by preferencesDataStore(name = "settings")
 
     private lateinit var binding: ActivityMainBinding
 

@@ -97,7 +97,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
                 "com.google.android.googlequicksearchbox.SearchActivity"
             )
             //mandas extras enn los parametros en el intent
-            intent.putExtra(SearchManager.QUERY,"porno")
+            intent.putExtra(SearchManager.QUERY,"chivalry 2")
             startActivity(intent)
         }
 

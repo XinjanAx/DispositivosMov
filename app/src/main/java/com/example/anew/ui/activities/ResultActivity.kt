@@ -20,16 +20,15 @@ class ResultActivity : AppCompatActivity() {
 
         binding.btnOK.setOnClickListener{
             val i = Intent()
-            i.putExtra("resilt","Resultado exitoso")
+            i.putExtra("result","Resultado ok")
             setResult(RESULT_OK,i)
-            //cierra sesion y borra lo que yo tengo archivos temporales
             finish()
         }
 
         binding.btnFalse.setOnClickListener{
             val i = Intent()
-            i.putExtra("resilt","Resultado fallido")
-            setResult(RESULT_OK,i)
+            i.putExtra("result","Resultado fallido")
+            setResult(RESULT_CANCELED,i)
             finish()
         }
     }

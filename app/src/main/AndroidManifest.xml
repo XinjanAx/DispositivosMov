@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
 
     <application
         android:allowBackup="true"
@@ -19,7 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.NotificacionActivity"
+            android:name=".ui.activities.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.EjercicioPracticoActivity"
@@ -34,7 +36,7 @@
             android:name=".ui.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.CameraActivity"
+            android:name=".ui.activities.NotificacionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

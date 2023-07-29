@@ -72,7 +72,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     //control de notificacion local
-    //yoca poner X en adroid desde la nueva actualizacion
-    implementation ("com.androidx.support:support-compat:28.0.0")
+    //Toca poner X en adroid desde la nueva actualizacion
+
 
 }

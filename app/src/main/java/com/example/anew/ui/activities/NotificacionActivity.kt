@@ -3,7 +3,9 @@ package com.example.anew.ui.activities
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -49,8 +51,20 @@ class NotificacionActivity : AppCompatActivity() {
     }
 
 
+
     @SuppressLint("MissingPermission")
     fun sendNorificacion(){
+
+        val intent = Intent(this, CameraActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+
 
         val noti = NotificationCompat.Builder(this, CHANNEL)
         //cuerpo de Notificacion
@@ -61,8 +75,13 @@ class NotificacionActivity : AppCompatActivity() {
         noti.setPriority(NotificationCompat.PRIORITY_DEFAULT)
         noti.setStyle(
             NotificationCompat.BigTextStyle()
-                .bigText("Recordatorio awita de coco... texto grande .... ..... gracias")
+                .bigText("Much longer text that cannot fit one line...")
         )
+        //aqui se toca la notificacion.
+        noti.setContentIntent(pendingIntent)
+        noti.setAutoCancel(true)
+
+
         //eniar la notificacion
         with(NotificationManagerCompat.from(this)){
             notify(1,noti.build())

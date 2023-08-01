@@ -1,6 +1,7 @@
 package com.example.anew.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -9,10 +10,13 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.anew.R
 import com.example.anew.databinding.ActivityNotificacionBinding
+import com.example.anew.ui.utilities.BroadasterNotifications
+import java.util.Calendar
 
 class NotificacionActivity : AppCompatActivity() {
 
@@ -27,7 +31,32 @@ class NotificacionActivity : AppCompatActivity() {
             createNotificationChannel()
             sendNorificacion()
         }
+        binding.btnNotificacionProgramada.setOnClickListener{
+            val calendar = Calendar.getInstance()
+            val hora = binding.timePicker.hour
+            val minuto = binding.timePicker.minute
+            Toast.makeText(this,"hora activacion:   $hora:$minuto",Toast.LENGTH_SHORT).show()
+            calendar.set(Calendar.HOUR,hora)
+            calendar.set(Calendar.MINUTE,minuto)
+            calendar.set(Calendar.SECOND,0)
+
+            sendNorificacionTimePicker(calendar.timeInMillis)
+        }
     }
+
+    private fun sendNorificacionTimePicker(time:Long) {
+        val myIntent = Intent(applicationContext,BroadasterNotifications::class.java)
+        val myPendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            0,
+            myIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,time,myPendingIntent)
+    }
+
+
 
 
     val CHANNEL = "Notificaciones"

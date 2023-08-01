@@ -6,15 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.NotificacionActivity">
 
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+    </TimePicker>
+
     <Button
         android:id="@+id/btnNotificacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
-        android:text="Notificacion Activate"
-        android:backgroundTint="@color/blue"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/azul_oscuro"
 
+        android:text="Notificacion Activate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+
+    <Button
+        android:id="@+id/btnNotificacionProgramada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="@color/dark_red"
+
+        android:text="Notificacion Peogramada Activate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNotificacion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

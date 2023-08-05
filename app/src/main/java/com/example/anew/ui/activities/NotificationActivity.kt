@@ -18,7 +18,7 @@ import com.example.anew.databinding.ActivityNotificacionBinding
 import com.example.anew.ui.utilities.BroadasterNotifications
 import java.util.Calendar
 
-class NotificacionActivity : AppCompatActivity() {
+class NotificationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNotificacionBinding
 

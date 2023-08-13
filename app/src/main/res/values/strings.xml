@@ -35,4 +35,5 @@
     <string name="txt_fragment3">Tercer Fragmento</string>
     <string name="ejecutar_x3">Ejecutar x3</string>
     <string name="ejecutar_x6">Ejecutar x6</string>
+    <string name="autent_biometrca">Autentificación Biometrca</string>
 </resources>

@@ -12,8 +12,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.speech.RecognizerIntent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -22,7 +22,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.anew.R
-import com.example.anew.databinding.ActivityEjercicioPracticoBinding
+import com.example.anew.databinding.ActivityLogginBinding
 import com.example.anew.ui.validator.LoginValidator
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -35,6 +35,9 @@ import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -43,15 +46,17 @@ import java.util.UUID
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 
-class EjercicioPracticoActivity : AppCompatActivity() {
+class LogginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEjercicioPracticoBinding
+    private lateinit var binding: ActivityLogginBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var client: SettingsClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallBack: LocationCallback
     private lateinit var locationSettingsRequest: LocationSettingsRequest
     private var currentLocation: Location? = null
+
+    private lateinit var auth: FirebaseAuth
 
     private val speechToText =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
@@ -119,7 +124,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
                         addOnFailureListener { ex ->
                             if (ex is ResolvableApiException) {
                                 ex.startResolutionForResult(
-                                    this@EjercicioPracticoActivity,
+                                    this@LogginActivity,
                                     LocationSettingsStatusCodes.RESOLUTION_REQUIRED
                                 )
                             }
@@ -161,8 +166,9 @@ class EjercicioPracticoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
 
-        binding = ActivityEjercicioPracticoBinding.inflate(layoutInflater)
+        binding = ActivityLogginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -171,6 +177,10 @@ class EjercicioPracticoActivity : AppCompatActivity() {
             Priority.PRIORITY_HIGH_ACCURACY,
             2000
         ).setMaxUpdates(3).build()
+
+        binding.btnIngresar.setOnClickListener{
+            authWithFirebaseEmail(binding.txtName.toString(),binding.txtPassword.toString())
+        }
 
         locationCallBack = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
@@ -188,6 +198,31 @@ class EjercicioPracticoActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun authWithFirebaseEmail(email:String, password:String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(Constants.TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication success.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(Constants.TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                }
+            }
     }
 
     override fun onStart() {
@@ -208,7 +243,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
     }
 
     fun initClass() {
-        binding.button2.setOnClickListener {
+        binding.btntwitter.setOnClickListener {
 
             val check = LoginValidator().checkLogin(
                 binding.txtName.text.toString(),
@@ -231,7 +266,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Snackbar.make(
-                    binding.button2,
+                    binding.btntwitter,
                     "Usuario o contraseña incorrectos",
                     Snackbar.LENGTH_SHORT
                 ).setBackgroundTint(Color.rgb(232, 87, 87)).show()
@@ -240,7 +275,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
         }
 
         //Intent puedo mandar cualquier cosa
-        binding.micro.setOnClickListener {
+        binding.btnRegis.setOnClickListener {
             //Abre una url con un boton, este intent tiene un punto de partida pero no de llegada
             //con geo: se puede mandar la latitud y longitud de una pos del mapa
             /*  val intent=Intent(
@@ -267,7 +302,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
         val appResultLocal =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { resultActivity ->
 
-                val sn = Snackbar.make(binding.micro, "", Snackbar.LENGTH_LONG)
+                val sn = Snackbar.make(binding.btnRegis, "", Snackbar.LENGTH_LONG)
 
                 var message = when (resultActivity.resultCode) {
                     RESULT_OK -> {
@@ -290,13 +325,13 @@ class EjercicioPracticoActivity : AppCompatActivity() {
             }
 
         //Diferencia con la primera es que las 2 se van a comunicar y cuando lo hagan se va alanzar este contrato
-        binding.btnResult.setOnClickListener {
+        binding.btntwitter.setOnClickListener {
             val resIntent = Intent(this, ResultActivity::class.java)
             appResultLocal.launch(resIntent)
         }
 
 
-        binding.textView10.setOnClickListener {
+        binding.txtOlvdPass.setOnClickListener {
             locationContract.launch(Manifest.permission.ACCESS_FINE_LOCATION)
 
 
@@ -310,7 +345,7 @@ class EjercicioPracticoActivity : AppCompatActivity() {
 //            speechToText.launch(intentSpeech)
         }
 
-        binding.button5.setOnClickListener {
+        binding.btnRegis.setOnClickListener {
             val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intentSpeech.putExtra(
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -321,11 +356,6 @@ class EjercicioPracticoActivity : AppCompatActivity() {
             speechToText.launch(intentSpeech)
         }
 
-
-        binding.btnResult.setOnClickListener {
-            val resIntent = Intent(this, ResultActivity::class.java)
-            appResultLocal.launch(resIntent)
-        }
 
     }
 

@@ -3,17 +3,13 @@ package com.example.anew.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.example.anew.R
 import com.example.anew.databinding.ActivityProgressBinding
-import com.example.anew.ui.viewmodel.ProgressViewModel
+import com.example.anew.ui.viewModel.ProgressViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ProgressActivity : AppCompatActivity() {

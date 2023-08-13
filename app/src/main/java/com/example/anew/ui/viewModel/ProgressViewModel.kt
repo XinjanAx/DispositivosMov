@@ -1,4 +1,4 @@
-package com.example.anew.ui.viewmodel
+package com.example.anew.ui.viewModel
 
 import android.util.Log
 import android.view.View
@@ -10,7 +10,6 @@ import com.example.anew.logic.marvelLogic.MarvelLogic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.time.OffsetTime
 
 class ProgressViewModel : ViewModel() {
 

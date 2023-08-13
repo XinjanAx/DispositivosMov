@@ -68,7 +68,7 @@ class ActivityWithBinding : AppCompatActivity() {
             // Asi se define un intent y se menciona a que Activity se trasladara
             var intent = Intent(
                 this,
-                EjercicioPracticoActivity::class.java
+                LogginActivity::class.java
             )
 
             // Con esto iniciamos el otro Activity

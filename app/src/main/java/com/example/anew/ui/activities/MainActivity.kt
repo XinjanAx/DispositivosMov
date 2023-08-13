@@ -16,7 +16,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.anew.R
-import com.example.anew.databinding.ActivityEjercicioPracticoBinding
 import com.example.anew.databinding.ActivityMainBinding
 import com.example.anew.ui.validator.LoginValidator
 import com.google.android.material.snackbar.Snackbar
@@ -26,14 +25,14 @@ import java.util.Locale
 import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
+/*
 
-
-    private lateinit var binding: ActivityEjercicioPracticoBinding
+    private lateinit var binding: ActivityMainBinding
 
     @SuppressLint("MissingInflated")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEjercicioPracticoBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -202,5 +201,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+*/
 }

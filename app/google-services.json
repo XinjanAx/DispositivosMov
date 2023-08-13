@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142244470204",
+    "project_id": "practicaucedispmov",
+    "storage_bucket": "practicaucedispmov.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142244470204:android:3043e04a2a352a16fcdfb9",
+        "android_client_info": {
+          "package_name": "com.example.anew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142244470204-7hqt3c9cbh7j0fca586ltbkfkbab9om1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf0eXXwZZvw4Ufj26e4880NA97BLpY28I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142244470204-7hqt3c9cbh7j0fca586ltbkfkbab9om1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

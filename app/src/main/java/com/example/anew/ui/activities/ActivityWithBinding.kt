@@ -37,7 +37,7 @@ class ActivityWithBinding : AppCompatActivity() {
 //        }
 //        Log.d("UCE", "Hola $name")
 
-        binding.textView.text = "Bienvenido $name!"
+        binding.txtTittle.text = "Bienvenido $name!"
 
         /* // Se usa !! si estamos seguros de que siempre llegara informacion a nuestra activity
         intent.extras!!.let {

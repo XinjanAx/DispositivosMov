@@ -49,6 +49,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class LogginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogginBinding
+
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var client: SettingsClient
     private lateinit var locationRequest: LocationRequest
@@ -101,7 +102,7 @@ class LogginActivity : AppCompatActivity() {
             sn.show()
 
         }
-
+/*
     @SuppressLint("MissingPermission")
     private val locationContract =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -163,7 +164,7 @@ class LogginActivity : AppCompatActivity() {
                 }
             }
         }
-
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -177,11 +178,13 @@ class LogginActivity : AppCompatActivity() {
             Priority.PRIORITY_HIGH_ACCURACY,
             2000
         ).setMaxUpdates(3).build()
-
+/*
         binding.btnIngresar.setOnClickListener{
-            authWithFirebaseEmail(binding.txtName.toString(),binding.txtPassword.toString())
+            authWithFirebaseEmail(
+            binding.txtName.toString(),
+            binding.txtPassword.toString())
         }
-
+*/
         locationCallBack = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
@@ -224,12 +227,30 @@ class LogginActivity : AppCompatActivity() {
                 }
             }
     }
+    private fun signInWithEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("UCE", "signInWithEmail:success")
+                    val user = auth.currentUser
+                    //updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("UCE", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    // updateUI(null)
+                }
+            }
+    }
 
     override fun onStart() {
         super.onStart()
         initClass()
-
-
     }
 
     override fun onDestroy() {
@@ -243,6 +264,13 @@ class LogginActivity : AppCompatActivity() {
     }
 
     fun initClass() {
+        binding.btnIngresar.setOnClickListener {
+            authWithFirebaseEmail(
+                binding.txtName.text.toString(),
+                binding.txtPassword.text.toString()
+            )
+        }
+        /*
         binding.btntwitter.setOnClickListener {
 
             val check = LoginValidator().checkLogin(
@@ -251,7 +279,6 @@ class LogginActivity : AppCompatActivity() {
             )
 
             if (check) {
-
                 lifecycleScope.launch(Dispatchers.IO) {
                     saveDataStore(binding.txtName.text.toString())
                 }
@@ -273,7 +300,7 @@ class LogginActivity : AppCompatActivity() {
             }
 
         }
-
+        */
         //Intent puedo mandar cualquier cosa
         binding.btnRegis.setOnClickListener {
             //Abre una url con un boton, este intent tiene un punto de partida pero no de llegada
@@ -332,7 +359,7 @@ class LogginActivity : AppCompatActivity() {
 
 
         binding.txtOlvdPass.setOnClickListener {
-            locationContract.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+           // locationContract.launch(Manifest.permission.ACCESS_FINE_LOCATION)
 
 
 //            val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -359,11 +386,14 @@ class LogginActivity : AppCompatActivity() {
 
     }
 
+
+
+
     private suspend fun saveDataStore(stringData: String) {
         dataStore.edit { prefs ->
             prefs[stringPreferencesKey("usuario")] = stringData
             prefs[stringPreferencesKey("email")] = "dimoviles@uce.edu.ec"
-            prefs[stringPreferencesKey("password")] = UUID.randomUUID().toString()
+            prefs[stringPreferencesKey("session")] = UUID.randomUUID().toString()
         }
     }
 

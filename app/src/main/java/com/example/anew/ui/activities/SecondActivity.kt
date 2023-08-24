@@ -1,4 +1,5 @@
 package com.example.anew.ui.activities
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -17,20 +18,15 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 
     override fun onStart() {
         super.onStart()
-
-        var name: String = ""
-
         Log.d("UCE", "Entrando a Start")
-
         super.onStart()
         FragmentsManager().replaceFragment(supportFragmentManager,
             binding.frmContainer.id, FirstFragment())
-
-
 
         initClass()
     }
@@ -74,6 +70,10 @@ class SecondActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+        binding.btnBack.setOnClickListener{
+            val backInit = Intent(this,MenuActivity::class.java)
+            startActivity(backInit )
         }
     }
 }

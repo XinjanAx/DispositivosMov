@@ -302,6 +302,7 @@ class LogginActivity : AppCompatActivity() {
         }
         */
         //Intent puedo mandar cualquier cosa
+        /* //aqui se realiza una busqueda en internet con un txt
         binding.btnRegis.setOnClickListener {
             //Abre una url con un boton, este intent tiene un punto de partida pero no de llegada
             //con geo: se puede mandar la latitud y longitud de una pos del mapa
@@ -325,6 +326,7 @@ class LogginActivity : AppCompatActivity() {
             intent.putExtra(SearchManager.QUERY, "UCE fing")
             startActivity(intent)
         }
+        */
 
         val appResultLocal =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { resultActivity ->
@@ -371,7 +373,7 @@ class LogginActivity : AppCompatActivity() {
 //            intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT, "Di algo")
 //            speechToText.launch(intentSpeech)
         }
-
+//aqui se realiza una busqueda por voz
         binding.btnRegis.setOnClickListener {
             val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intentSpeech.putExtra(

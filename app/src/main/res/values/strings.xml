@@ -21,8 +21,8 @@
     <string name="pass">Contraseña</string>
     <string name="botonIngresar">Ingresar</string>
     <string name="txtDesvio">Ó conéctate usando las redes sociales</string>
-    <string name="remember">¿Olvido su contraseña?</string>
-    <string name="SingUp">Registrate</string>
+    <string name="remember">¿Sin cuenta?</string>
+    <string name="SingUp">Sing Up</string>
 
     <string name="app_name_pantalla">Fast and Delicious Food</string>
     <string name="app_binding_name">Gaming Services</string>
@@ -30,10 +30,13 @@
     <string name="pedidosOnline">Pedidos Online</string>
     <string name="mensaje_ejPractico">¡Hola! Es bueno verte nuevamente</string>
     <string name="correoEjemplo">example@email.com</string>
-    <string name="txt_fragment">Primer Fragmento</string>
-    <string name="txt_fragment2">Segundo Fragmento</string>
-    <string name="txt_fragment3">Tercer Fragmento</string>
+    <string name="txt_fragment">Personajes</string>
+    <string name="txt_fragment2">Segundo Fragment</string>
+    <string name="txt_fragment3">Tercer Fragment</string>
     <string name="ejecutar_x3">Ejecutar x3</string>
     <string name="ejecutar_x6">Ejecutar x6</string>
     <string name="autent_biometrca">Autentificación Biometrca</string>
+    <string name="txtfrag">Recarga para ver los porsonajes</string>
+    <string name="back">Back</string>
+    <string name="getout">Salir</string>
 </resources>

@@ -85,26 +85,6 @@ class FirstFragment : Fragment() {
                     Log.d("UCE", it.session)
                 }
         }
-
-
-        /*
-        val names = arrayListOf<String>(
-            "Ariel",
-            "Michael",
-            "Erick",
-            "Willian",
-            "Edwin",
-            "Santiago",
-            "Layla"
-        )
-
-        val adapter = ArrayAdapter<String>(
-            requireActivity(),
-            R.layout.simple_spinner,
-            names
-        )
-        */
-
         chargeDataRVInit(offset, limit)
 
         binding.rvSwipe.setOnRefreshListener {
@@ -146,38 +126,6 @@ class FirstFragment : Fragment() {
                 }
             }
         )
-
-        binding.txtFilter.addTextChangedListener { filteredText ->
-            val newItems = marvelCharItems.filter { items ->
-                items.nombre.lowercase().contains(filteredText.toString().lowercase())
-            }
-            rvAdapter.replaceListAdapter(newItems)
-        }
-
-        /*
-
-                binding.txtFilter.setOnEditorActionListener { textView, actionId, keyEvent ->
-                    if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        val inputMethodManager =
-                            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        inputMethodManager.hideSoftInputFromWindow(binding.txtFilter.windowToken, 0)
-
-                        chargeDataRvAPI(textView.text.toString())
-
-        //                val fragment = SecondFragment()
-        //                val args = Bundle().apply { putString("busqueda", textView.text.toString()) }
-        //                fragment.arguments = args
-        //
-        //                requireActivity().supportFragmentManager.beginTransaction()
-        //                    .replace(R.id.frm_container, fragment)
-        //                    .addToBackStack(null)
-        //                    .commit()
-
-                        return@setOnEditorActionListener true
-                    }
-                    false
-                }
-        */
     }
 
 

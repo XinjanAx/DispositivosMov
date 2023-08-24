@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lowGrey">#9C9C9C</color>
-    <color name="naranjaG">#F95D68</color>
+    <color name="naranjaG">#E85757</color>
     <color name="twitter">#00A2F5</color>
     <color name="facebook">#23599B</color>
     <color name="lowGreen">#676767</color>
@@ -27,9 +27,9 @@
     <color name="naranja">#FF9800</color>
     <color name="search_bg">#3ED1D1D5</color>
     <color name="title_binding">#FF9800</color>
-    <color name="fragment1">#8C1C13</color>
-    <color name="fragment2">#BF4342</color>
-    <color name="fragment3">#E7D7C1</color>
+    <color name="fragment1">#7C0900</color>
+    <color name="fragment2">#000000</color>
+    <color name="fragment3">#FCF04F</color>
     <color name="naranja1">#FFC15E</color>
     <color name="naranja2">#F7B05B</color>
     <color name="naranja3">#F7934C</color>

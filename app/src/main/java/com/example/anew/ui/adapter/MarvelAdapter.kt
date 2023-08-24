@@ -17,7 +17,6 @@ class MarvelAdapter(
 ) :
 
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
-
     class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding: MarvelCharactersBinding = MarvelCharactersBinding.bind(view)

@@ -42,6 +42,10 @@ class NotificationActivity : AppCompatActivity() {
 
             sendNorificacionTimePicker(calendar.timeInMillis)
         }
+        binding.btnBack.setOnClickListener{
+            val backIntent = Intent(this,MenuActivity::class.java)
+            startActivity(backIntent)
+        }
     }
 
     private fun sendNorificacionTimePicker(time:Long) {

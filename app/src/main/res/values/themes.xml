@@ -50,6 +50,7 @@
     </style>
     <style name="boton">
         <item name="cornerRadius">7dp</item>
+        <item name="backgroundTint">@color/naranjaG</item>
     </style>
 
     <style name="ActivityIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
@@ -96,5 +97,6 @@
     <style name="Active_Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/title_binding</item>
     </style>
+
 
 </resources>

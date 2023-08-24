@@ -91,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtCorreo"
         style="@style/textoStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
         android:drawableLeft="@drawable/twiterlogo"
         android:id="@+id/btntwitter"
         style="@style/boton"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:backgroundTint="@color/twitter"
@@ -117,7 +117,7 @@
         android:id="@+id/btnfacebook"
         android:drawableLeft="@drawable/fblogo"
         style="@style/boton"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="92dp"
@@ -126,28 +126,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
     <TextView
         android:id="@+id/textView6"
         style="@style/textoStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/remember"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.152"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/textView7"
-        style="@style/subtitulos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
         android:layout_marginBottom="44dp"
-        android:text="@string/SingUp"
+        android:text="@string/remember"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -159,5 +147,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_edi" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        style="@style/boton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/SingUp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

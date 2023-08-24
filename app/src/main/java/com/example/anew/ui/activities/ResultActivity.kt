@@ -20,14 +20,14 @@ class ResultActivity : AppCompatActivity() {
 
         binding.btnOK.setOnClickListener{
             val i = Intent()
-            i.putExtra("result","Resultado ok")
+            i.putExtra("result","Si, Todo Bien ok")
             setResult(RESULT_OK,i)
             finish()
         }
 
         binding.btnFalse.setOnClickListener{
             val i = Intent()
-            i.putExtra("result","Resultado fallido")
+            i.putExtra("result","F... for pay respects")
             setResult(RESULT_CANCELED,i)
             finish()
         }

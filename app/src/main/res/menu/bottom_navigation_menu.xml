@@ -5,11 +5,11 @@
     <item
         android:id="@+id/inicio"
         android:icon="@drawable/baseline_menu_24"
-        android:title="Inicio" />
+        android:title="Marvels" />
     <item
         android:id="@+id/favoritos"
         android:icon="@drawable/baseline_favorite_border_24"
-        android:title="Favoritos" />
+        android:title="Soon" />
     <item
         android:id="@+id/apis"
         android:icon="@drawable/baseline_other_houses_24"

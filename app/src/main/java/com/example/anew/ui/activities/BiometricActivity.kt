@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import androidx.activity.viewModels
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
@@ -13,12 +14,12 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 
 import com.example.anew.databinding.ActivityBiometricBinding
+import com.example.anew.ui.viewModel.BiometricViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class BiometricActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBiometricBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +77,7 @@ class BiometricActivity : AppCompatActivity() {
 
     private fun checkBiometric() : Boolean{
         val biometricManager = BiometricManager.from(this)
-        var returnValid = true
+        var returnValid  = false
 
         when(biometricManager.canAuthenticate(
             BIOMETRIC_STRONG or DEVICE_CREDENTIAL

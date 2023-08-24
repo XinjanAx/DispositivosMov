@@ -31,7 +31,7 @@
     </style>
 
     <style name="tituloStyle">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">30sp</item>
 
     </style>
     <style name="textoStyle">

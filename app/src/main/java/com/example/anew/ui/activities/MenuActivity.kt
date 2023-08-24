@@ -15,17 +15,14 @@ import androidx.core.content.ContextCompat
 import com.example.anew.R
 import com.example.anew.databinding.ActivityMenuBinding
 import com.google.android.material.snackbar.Snackbar
-import java.util.Locale
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding
-
-
     private val speechToText =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
             val sn = Snackbar.make(
-                binding.root,
+                binding.btnMicro,
                 "",
                 Snackbar.LENGTH_LONG
             )
@@ -34,7 +31,7 @@ class MenuActivity : AppCompatActivity() {
             when (activityResult.resultCode) {
                 RESULT_OK -> {
                     val msg =
-                        activityResult.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                        activityResult.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)
                             .toString()
                     if (msg.isNotEmpty()) {
                         val intent = Intent(
@@ -44,12 +41,10 @@ class MenuActivity : AppCompatActivity() {
                             "com.google.android.googlequicksearchbox",
                             "com.google.android.googlequicksearchbox.SearchActivity"
                         )
-                        intent.putExtra(SearchManager.QUERY, msg.toString())
+                        intent.putExtra(SearchManager.QUERY, msg)
                         startActivity(intent)
                     }
                 }
-
-
                 RESULT_CANCELED -> {
                     message = "Proceso Cancelado"
                     sn.setBackgroundTint(resources.getColor(R.color.rojo_pasion))
@@ -63,7 +58,6 @@ class MenuActivity : AppCompatActivity() {
             }
             sn.setText(message)
             sn.show()
-
         }
     val appResultLocal =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { resultActivity ->
@@ -213,7 +207,6 @@ class MenuActivity : AppCompatActivity() {
         }
         return returnValid
     }
-
     private fun salir() {
         finishAffinity()
     }

@@ -24,7 +24,7 @@
             android:name=".ui.activities.LogginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.MenuActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ProgressActivity"
@@ -53,7 +53,7 @@
             android:name=".ui.activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MenuActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,51 +1,16 @@
 package com.example.anew.ui.activities
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
-import android.speech.RecognizerIntent
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.lifecycleScope
-import com.example.anew.R
 import com.example.anew.databinding.ActivityMainBinding
-import com.example.anew.ui.validator.LoginValidator
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.LocationSettingsRequest
-import com.google.android.gms.location.LocationSettingsStatusCodes
-import com.google.android.gms.location.Priority
-import com.google.android.gms.location.SettingsClient
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.integrity.internal.l
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.Locale
-import java.util.UUID
+
 
 class MainActivity : AppCompatActivity() {
 

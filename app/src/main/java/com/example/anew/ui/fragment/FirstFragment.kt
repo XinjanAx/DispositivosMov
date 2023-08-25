@@ -7,15 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.core.widget.addTextChangedListener
-import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.anew.*
 import com.example.anew.databinding.FragmentFirstBinding
 import com.example.anew.logic.data.MarvelChars
 import com.example.anew.logic.data.getMarvelCharsDB
@@ -165,26 +161,6 @@ class FirstFragment : Fragment() {
         }
     }
 
-    // Serializacion: proceso de pasar de un objeto a un string para poder enviarlo por medio de la web
-    // Parcelables:   Mucho mas eficiente que la serializacion, pues ejecutan de mejor manera el mismo proceso
-    // Serializacion -> Utiliza objetos JSON
-    // Parcelables   -> Son mas rapidos pero su implementacion es compleja, afortunadamente existen plugins que nos ayudan
-
-    /*
-    fun corroutine() {
-        lifecycleScope.launch(Dispatchers.Main) {
-            var name = "Ariel" // no tiene ningun efecto de cambio porque son distintos hilos
-            // Por medio de dispatchers elegimos un hilo
-            name = withContext((Dispatchers.IO)) {
-                name = "Michael"
-                return@withContext name // De esta forma si se actualiza en el hilo en el que este esa variable
-            }
-
-            binding.cardView.radius
-        }
-    }
-    */
-
     fun chargeDataRvAPI(search: String) {
 
         lifecycleScope.launch(Dispatchers.Main) {
@@ -233,11 +209,7 @@ class FirstFragment : Fragment() {
             binding.rvMarvelChars.apply {
                 this.adapter = rvAdapter
                 this.layoutManager = lmanager
-
-//                this.layoutManager = gManager
-//                gManager.scrollToPositionWithOffset(offset, limit)
             }
-            //this@FirstFragment.offset += limit
         }
         this.offset += this.limit
     }

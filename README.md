@@ -32,3 +32,8 @@ To use this code, you need to have the necessary dependencies for using Kotlin i
 - Databinding Camera
 - Location
 - Firebase
+
+## Result
+| ![Login](https://github.com/XinjanAx/DispositivosMov/blob/main/img/login.jpg) | ![SignUp](https://github.com/XinjanAx/DispositivosMov/blob/main/img/signup.jpg) |![Menu](https://github.com/XinjanAx/DispositivosMov/blob/main/img/Menu.jpg) |![1rOpcion](https://github.com/XinjanAx/DispositivosMov/blob/main/img/Marvel.jpg) |
+|----------|:-------------:|:-------------:|:-------------:|
+
